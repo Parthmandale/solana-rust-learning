@@ -196,6 +196,41 @@ impl Summary for Artcile {
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+/* ERROR */
+
+/*
+// Result allows the function to return either a value (Ok) or an error (Err).
+// This eliminates the need for exceptions or custom error codes.
+The Return Type: Result<T, E>
+The Result enum in Rust is used for error handling. It represents either:
+
+A successful computation: Ok(T) (where T is the type of the successful result).
+An error: Err(E) (where E is the type of the error).
+*/
+
+fn divide(a: f64, b: f64) -> Result<f64, string> {
+    if b == 0.0 {
+        Err(String::from("Division by zero"))
+    } 
+    else {
+        Ok(a/b)
+    }
+}
+
+
+// Option - final return value in Some or None.
+
+fn find_char(s: &str, c: char) -> Option<usize> {
+   
+   // it loops through the char in s as enumerate returns current index  of char we are in s string
+    for(i, ch) in s.chars().enumerate() {
+        if ch == c {
+            return Some(i);
+        }
+    }
+    None
+}
 
 
 

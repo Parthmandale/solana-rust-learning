@@ -97,6 +97,35 @@ println!("addition: {}", addition);
 println!("sq: {}", sq);
 }
 
+//////////////////////////////////////////////////////////////////////////////
+
+/* STRUCT */
+
+struct User {
+    username: String,
+    email: String,
+    active: bool,
+}
+
+let user1 = User {
+    username: String::from("parth"),
+    email: String::from("parth@gmail.com"),
+    active: true,
+}
+
+/*ENUM  */
+
+enum Addr {
+    // variants
+    V4(u8, u8, u8, u8),
+    V6(String),
+    Unknown,
+}
+
+
+let home = Addr::V4(1,2,3,9);
+let city = Addr::V6(String::from("::Pune"));
+let unknown = Addr::Unknown;
 
 
 

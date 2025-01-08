@@ -122,12 +122,78 @@ enum Addr {
     Unknown,
 }
 
-
 let home = Addr::V4(1,2,3,9);
 let city = Addr::V6(String::from("::Pune"));
 let unknown = Addr::Unknown;
 
+///////////////////////////////////////////////////////////////////////////////
 
+/* OWNERSHIP & MOVE SEMANTICS */
+
+/* Each value in Rust has a variable that's called it's owner
+Every value in rust ONLY have a single owner
+when the owner goes out of scope, this value will be dropped.
+*/ 
+
+let s3 = String::from("block string");
+{
+    let s4 = s3; // s3 is moved into this block
+    println!("Inside block: {}", s4);
+} // here the scope finishes, so s4 is dropped here and the memory is freed
+
+// println!("{}", s3); // Error! s3 is no longer valid | because in block the owner of s3 was changed to s4, but now as we are out of scope we can not access it.
+
+///////////////////////////////////////////////////////////////////////////////
+
+/* REFERENCES & BORROWING */
+
+// & => means it is reference so it just used as view function, you can read but can not modify it.
+
+
+fn calculate_length(s: &String) -> usize {
+    s.len;
+}
+
+
+// this s1 has the ownership of the string
+let s1 = String::from("hello");
+// we calculate length but do not transfer ownership of value of the string to the new variable that is parameter of the function,
+// we just tell it that here it is you can read it but you cannot modify it and s1 is still the owner
+let len = calculate_length(&s1);
+
+
+fn change(s: &mut String) {
+    s.push_str(", world");
+}
+
+let mut s = String::from("hello");
+// &mut - means refence and I';m sending hello in here but change function can update it just for its own function. here
+// the owner is still s
+change(&mut s);
+
+///////////////////////////////////////////////////////////////////////////////
+
+/* TRAITS */
+
+// trait = interfaces in solidity, onlt function is declared and not defined.
+// here in trait a function can also be already speacified. liek abstract
+trait Summary {
+    // &self - means we can access fields of structs and return string.
+    fn summarize(&self) -> String;
+}
+
+struct Article {
+    headline: String,
+    content: String,
+}
+
+// to implement the summary traits which specifies or defines the function called summararize. 
+// if we have multiple functions declared inside summary trait then we will have to implement every function for the article Struct 
+impl Summary for Artcile {
+    fn summarize(&self) -> String {
+        format!("{}...", &self.content[0..50]) // reading first 50 value of content string
+    }
+}
 
 
 

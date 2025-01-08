@@ -1,6 +1,7 @@
 Rust provides three types of structs: classic C structs, tuple structs, and unit structs. Here’s an explanation and example of each:
 
 1. Classic C Struct
+
 A classic C struct is similar to structs in C or other languages. It has named fields, which makes it easy to access individual values.
 
 Example:
@@ -27,6 +28,7 @@ Useful for creating clear, structured data types.
 
 
 2. Tuple Struct
+   
 A tuple struct is like a tuple but with a unique name for the struct. The fields are accessed by their positional index instead of names.
 
 Example:
@@ -46,6 +48,7 @@ Useful when the structure is simple or when naming fields is unnecessary.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 3. Unit Struct
+
 A unit struct is a struct with no fields. It acts as a marker or represents a singleton-like value.
 
 Example:

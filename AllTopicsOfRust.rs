@@ -262,3 +262,87 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
         y
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// vectors - can be stored with only 1 type of vectors. 
+
+fn main() {
+    let a: = [1,2,3];
+    let mut v:Vec<i32> = Vec::new();
+
+   v.push(1);
+   v.push(2);
+   v.push(3);
+   
+   {
+       let v2 = vec![1,2,3];
+   }
+    
+}
+
+// accessing elements inside vector
+
+fn main() {
+    let v = vec![1,2,3,4,5];
+    
+    // 1st way -
+    let third = &v[2];
+    println!("the thirst elemnt is {}" third);
+
+    // 2nd way ->
+    match v.get(2) {
+        Some(third) => println!("The third element is {}", third),
+        None => println!("There is no third element."),
+    }
+}
+
+// iterating in vector
+fn main() {
+    let mut v = vec![1,2,3,4,5];
+    
+    for i in &v {
+        println!("{}" i);
+    }
+}
+
+// storing enum variance inside a vector
+
+fn main() {
+    
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let row = vec![
+    SpreadsheetCell::Int(3),
+    SpreadsheetCell::Text(String::from("blue")),
+    SpreadsheetCell::Float(10.12),
+    ];
+    
+    match &row[1] {
+        SpreadsheetCell::Int(i) => println!("{}", i),
+        _ => println!("Not a integer!")
+    };
+}
+
+// Hashmaps - allows you store key value pairs
+
+// we need to first bring the standard library
+
+use std::collections::HashMap;
+
+fn main() {
+    // key = team name | value = team score
+    
+    // team name
+    let blue = String::from("Blue");
+    let yellow = String::from("Yellow");
+
+    let mut scores = HashMap::new();
+    
+    scores.insert(blue, 10);
+    scores.insert(yellow, 50);
+}

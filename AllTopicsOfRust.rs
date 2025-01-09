@@ -232,19 +232,33 @@ fn find_char(s: &str, c: char) -> Option<usize> {
     None
 }
 
+///////////////////////////////////////////////////////////////////////////////
+
+/* LIFETIMNES */
+
+/* generic lifetime annotation describe the relationship btw the lifetimes of multiple references and how they relate to each other
+so they dont change the liftime of the refference but rather just explain the relationship between different liftime 
+*/
+
+fn main() {
+    let string1 = String::from("aaaa");
+    let string2 = String::from("xxx");
+
+//  borrow checker will check with is the  smallest liftime and will save result.  
+    let result = longest(string1.as_str(), string2.as_str());
+    println!("the longest is {}" ,result);
+}
+
+// &i32     => a reference
+// &'a i32  => a reference with an explicit lifetime
+// &'a mut i32 => a mutable reference with an explicit liftime
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// this means that the x,y and return type will relation, where whoever's liftime is smaller thats the liftime of return type
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
